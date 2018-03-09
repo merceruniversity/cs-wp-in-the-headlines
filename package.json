@@ -1,0 +1,25 @@
+{
+  "name": "cs-wp-in-the-headlines",
+  "version": "1.0.0",
+  "description": "CommonSpot element for In-The-Headlines-style news feeds.",
+  "main": "index.js",
+  "scripts": {
+    "test": "local-server test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merceruniversity/cs-wp-in-the-headlines.git"
+  },
+  "keywords": [
+    "CommonSpot",
+    "element",
+    "WordPress",
+    "JavaScript"
+  ],
+  "author": "Todd Sayre",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/merceruniversity/cs-wp-in-the-headlines/issues"
+  },
+  "homepage": "https://github.com/merceruniversity/cs-wp-in-the-headlines#readme"
+}
