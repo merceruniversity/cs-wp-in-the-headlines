@@ -1,10 +1,8 @@
 # cs-wp-in-the-headlines
 
-A CommonSpot element to render news articles for the In The Headlines section of homepages from a JSONP feed from WordPress.
+A CommonSpot element to render news articles for the In The Headlines section of the University homepage as well as College/School homepages from a JSONP feed from the new University news site running on WordPress.
 
-- [Swiper](http://idangero.us/swiper/)
-
-## Sample URL
+## Sample JSONP URL
 
 [Posts tagged with Law](http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed&_jsonp=test)
 
@@ -18,6 +16,6 @@ A CommonSpot element to render news articles for the In The Headlines section of
 
 ```txt
 render-handler.cfm
-resources-early-loading.css
-resources-late-loading.js
+early-loading.css
+late-loading.js
 ```

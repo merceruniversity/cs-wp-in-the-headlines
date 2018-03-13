@@ -123,7 +123,7 @@
   module.exports = fetchJsonp;
 });
 },{}],2:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -141,9 +141,29 @@ var InTheHeadlines = function () {
   }
 
   _createClass(InTheHeadlines, [{
-    key: "toHtml",
+    key: 'toHtml',
     value: function toHtml() {
-      return "<div>rendered</div>";
+      var _this = this;
+
+      var slidesHtml = this.json;
+
+      slidesHtml = slidesHtml.map(function (slide) {
+        return _this.slideHtml(slide);
+      });
+      console.log(slidesHtml);
+      slidesHtml = slidesHtml.join('');
+      console.log(slidesHtml);
+
+      return '\n      <div class="carousel">\n        ' + slidesHtml + '\n      </div>\n    ';
+    }
+  }, {
+    key: 'slideHtml',
+    value: function slideHtml(slideData) {
+      console.log(slideData);
+      console.log(slideData.title);
+      console.log(slideData.title.rendered);
+      var headline = slideData.title.rendered;
+      return '\n      <h3>' + headline + '</h3>\n    ';
     }
   }]);
 
