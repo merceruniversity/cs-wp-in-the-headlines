@@ -4,7 +4,20 @@
   "description": "CommonSpot element for In-The-Headlines-style news feeds.",
   "main": "index.js",
   "scripts": {
-    "test": "local-server test"
+    "prebuild": "run-s clean",
+    "build:js": "browserify src/late-loading.js -o dist/late-loading.js -t [ babelify --presets [ latest ] ]",
+    "build:css:node-sass": "node-sass src/early-loading.scss dist/early-loading.css",
+    "build:css:postcss": "postcss dist/early-loading.css -u autoprefixer -o dist/early-loading.css",
+    "build:css": "run-s build:css:*",
+    "build": "run-p build:*",
+    "postbuild:flickity": "cpy node_modules/flickity/dist/*.* test/resources/flickity/",
+    "postbuild:element-css": "cpy dist/*.css test/resources",
+    "postbuild:element-js": "cpy dist/*.js test/resources",
+    "postbuild": "run-p postbuild:*",
+    "clean:test-resources": "rimraf test/resources && mkdirp test/resources",
+    "clean:dist": "rimraf dist &&  mkdirp dist",
+    "clean": "run-p clean:*",
+    "test": "live-server test"
   },
   "repository": {
     "type": "git",
@@ -21,5 +34,24 @@
   "bugs": {
     "url": "https://github.com/merceruniversity/cs-wp-in-the-headlines/issues"
   },
-  "homepage": "https://github.com/merceruniversity/cs-wp-in-the-headlines#readme"
+  "homepage": "https://github.com/merceruniversity/cs-wp-in-the-headlines#readme",
+  "dependencies": {
+    "autoprefixer": "^8.1.0",
+    "babel-preset-latest": "^6.24.1",
+    "babelify": "^8.0.0",
+    "babili": "^0.1.4",
+    "browserify": "^16.1.1",
+    "cpy-cli": "^1.0.1",
+    "cssnano-cli": "^1.0.5",
+    "fetch-jsonp": "^1.1.3",
+    "flickity": "^2.0.11",
+    "jshint": "^2.9.5",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.8.1",
+    "npm-run-all": "^4.1.2",
+    "postcss-cli": "^5.0.0",
+    "prettier": "^1.11.1",
+    "rimraf": "^2.6.2",
+    "sass-bem": "^2.6.5"
+  }
 }
