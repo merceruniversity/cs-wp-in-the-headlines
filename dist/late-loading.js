@@ -170,7 +170,7 @@ var InTheHeadlines = function () {
       var imageTitle = firstFeaturedMedia.rendered;
       // let imageUrl = ``;
       var imageUrl = firstFeaturedMedia.source_url;
-      return '\n      <img alt="' + imageTitle + '" src="' + imageUrl + '">\n      <h3>' + headline + '</h3>\n    ';
+      return '\n      <div class="carousel-cell">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3>' + headline + '</h3>\n      </div>\n    ';
     }
   }]);
 
@@ -200,6 +200,9 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
   var ithContainer = document.getElementById('in-the-headlines-container');
   // console.log(ithContainer);
   ithContainer.innerHTML = ith.toHtml();
+  var flkty = new Flickity('.carousel', {
+    // options
+  });
 }).catch(function (ex) {
   console.log('parsing failed', ex);
 });
