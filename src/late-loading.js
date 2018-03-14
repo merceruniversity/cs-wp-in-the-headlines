@@ -14,9 +14,26 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
   let ithContainer = document.getElementById('in-the-headlines-container');
   // console.log(ithContainer);
   ithContainer.innerHTML = ith.toHtml();
-  let flkty = new Flickity( '.carousel', {
-    imagesLoaded: true
-  });
+  var mySwiper = new Swiper ('.swiper-container', {
+    // Optional parameters
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })
 }).catch(function(ex) {
   console.log('parsing failed', ex);
 });

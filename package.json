@@ -10,7 +10,9 @@
     "build:css:postcss": "postcss dist/early-loading.css -u autoprefixer -o dist/early-loading.css",
     "build:css": "run-s build:css:*",
     "build": "run-p build:*",
-    "postbuild:flickity": "cpy node_modules/flickity/dist/*.* test/resources/flickity/",
+    "postbuild:swiper:css": "cpy node_modules/swiper/dist/css/swiper.min.css test/resources/swiper/",
+    "postbuild:swiper:js": "cpy node_modules/swiper/dist/js/swiper.js test/resources/swiper/",
+    "postbuild:swiper": "run-p postbuild:swiper:*",
     "postbuild:element-css": "cpy dist/*.css test/resources",
     "postbuild:element-js": "cpy dist/*.js test/resources",
     "postbuild": "run-p postbuild:*",
@@ -52,6 +54,7 @@
     "postcss-cli": "^5.0.0",
     "prettier": "^1.11.1",
     "rimraf": "^2.6.2",
-    "sass-bem": "^2.6.5"
+    "sass-bem": "^2.6.5",
+    "swiper": "^4.1.6"
   }
 }

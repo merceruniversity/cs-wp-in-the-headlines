@@ -155,7 +155,7 @@ var InTheHeadlines = function () {
       slidesHtml = slidesHtml.join('');
       // console.log(slidesHtml);
 
-      return '\n      <div class="carousel">\n        ' + slidesHtml + '\n      </div>\n    ';
+      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="swiper-pagination"></div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="swiper-button-prev"></div>\n        <div class="swiper-button-next"></div>\n     \n        <!-- If we need scrollbar -->\n        <div class="swiper-scrollbar"></div>\n        \n      </div>\n    ';
     }
   }, {
     key: 'slideHtml',
@@ -170,7 +170,7 @@ var InTheHeadlines = function () {
       var imageTitle = firstFeaturedMedia.rendered;
       // let imageUrl = ``;
       var imageUrl = firstFeaturedMedia.source_url;
-      return '\n      <div class="carousel-cell">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3>' + headline + '</h3>\n      </div>\n    ';
+      return '\n      <div class="swiper-slide">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3>' + headline + '</h3>\n      </div>\n    ';
     }
   }]);
 
@@ -200,8 +200,25 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
   var ithContainer = document.getElementById('in-the-headlines-container');
   // console.log(ithContainer);
   ithContainer.innerHTML = ith.toHtml();
-  var flkty = new Flickity('.carousel', {
-    imagesLoaded: true
+  var mySwiper = new Swiper('.swiper-container', {
+    // Optional parameters
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination'
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.swiper-scrollbar'
+    }
   });
 }).catch(function (ex) {
   console.log('parsing failed', ex);

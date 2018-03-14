@@ -13,8 +13,24 @@ export default class InTheHeadlines {
     // console.log(slidesHtml);
 
     return `
-      <div class="carousel">
-        ${slidesHtml}
+      <!-- Slider main container -->
+      <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          ${slidesHtml}
+        </div>
+        
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+     
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+     
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+        
       </div>
     `;
   }
@@ -31,7 +47,7 @@ export default class InTheHeadlines {
     // let imageUrl = ``;
     let imageUrl = firstFeaturedMedia.source_url;
     return `
-      <div class="carousel-cell">
+      <div class="swiper-slide">
         <img alt="${imageTitle}" src="${imageUrl}">
         <h3>${headline}</h3>
       </div>
