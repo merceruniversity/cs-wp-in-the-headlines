@@ -15,7 +15,7 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
   // console.log(ithContainer);
   ithContainer.innerHTML = ith.toHtml();
   let flkty = new Flickity( '.carousel', {
-    // options
+    imagesLoaded: true
   });
 }).catch(function(ex) {
   console.log('parsing failed', ex);
