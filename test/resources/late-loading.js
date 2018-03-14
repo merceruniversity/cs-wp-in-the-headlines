@@ -155,7 +155,7 @@ var InTheHeadlines = function () {
       slidesHtml = slidesHtml.join('');
       // console.log(slidesHtml);
 
-      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="swiper-pagination"></div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="swiper-button-prev"></div>\n        <div class="swiper-button-next"></div>\n     \n        <!-- If we need scrollbar -->\n        <div class="swiper-scrollbar"></div>\n        \n      </div>\n    ';
+      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="swiper-pagination"></div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="swiper-button-prev"></div>\n        <div class="swiper-button-next"></div>\n        \n      </div>\n    ';
     }
   }, {
     key: 'slideHtml',

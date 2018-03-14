@@ -27,9 +27,6 @@ export default class InTheHeadlines {
         <!-- If we need navigation buttons -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
-     
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
         
       </div>
     `;
