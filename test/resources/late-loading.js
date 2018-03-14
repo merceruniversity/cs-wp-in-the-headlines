@@ -150,9 +150,10 @@ var InTheHeadlines = function () {
       slidesHtml = slidesHtml.map(function (slide) {
         return _this.slideHtml(slide);
       });
-      console.log(slidesHtml);
+      // TODO: filter for only articles with featured images
+      // console.log(slidesHtml);
       slidesHtml = slidesHtml.join('');
-      console.log(slidesHtml);
+      // console.log(slidesHtml);
 
       return '\n      <div class="carousel">\n        ' + slidesHtml + '\n      </div>\n    ';
     }
@@ -160,10 +161,16 @@ var InTheHeadlines = function () {
     key: 'slideHtml',
     value: function slideHtml(slideData) {
       console.log(slideData);
-      console.log(slideData.title);
-      console.log(slideData.title.rendered);
+      // console.log(slideData.title);
+      // console.log(slideData.title.rendered);
+      // console.log(slideData._embedded['wp:featuredmedia']);
+      var firstFeaturedMedia = slideData._embedded['wp:featuredmedia'][0];
       var headline = slideData.title.rendered;
-      return '\n      <h3>' + headline + '</h3>\n    ';
+      // let imageTitle = ``;
+      var imageTitle = firstFeaturedMedia.rendered;
+      // let imageUrl = ``;
+      var imageUrl = firstFeaturedMedia.source_url;
+      return '\n      <img alt="' + imageTitle + '" src="' + imageUrl + '">\n      <h3>' + headline + '</h3>\n    ';
     }
   }]);
 
@@ -191,7 +198,7 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
   console.log('parsed json', json);
   var ith = new _inTheHeadlines2.default(json);
   var ithContainer = document.getElementById('in-the-headlines-container');
-  console.log(ithContainer);
+  // console.log(ithContainer);
   ithContainer.innerHTML = ith.toHtml();
 }).catch(function (ex) {
   console.log('parsing failed', ex);

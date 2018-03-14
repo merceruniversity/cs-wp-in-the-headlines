@@ -12,9 +12,8 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
   console.log('parsed json', json);
   let ith = new InTheHeadlines(json);
   let ithContainer = document.getElementById('in-the-headlines-container');
-  console.log(ithContainer);
+  // console.log(ithContainer);
   ithContainer.innerHTML = ith.toHtml();
 }).catch(function(ex) {
   console.log('parsing failed', ex);
 });
-

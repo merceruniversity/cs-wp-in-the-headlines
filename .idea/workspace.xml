@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e58497d4-b767-4630-9a4c-ff5ff05a34f8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/late-loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/late-loading.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/in-the-headlines.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/in-the-headlines.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/late-loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/late-loading.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/resources/late-loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/resources/late-loading.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -42,8 +42,8 @@
       <file leaf-file-name="late-loading.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/late-loading.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+            <state relative-caret-position="323">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -51,8 +51,8 @@
       <file leaf-file-name="in-the-headlines.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/in-the-headlines.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            <state relative-caret-position="527">
+              <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -101,6 +101,7 @@
       <find>resouce</find>
       <find>esversion</find>
       <find>node</find>
+      <find>let</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -113,9 +114,9 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.jshintrc" />
         <option value="$PROJECT_DIR$/src/InTheHeadlines.js" />
-        <option value="$PROJECT_DIR$/src/late-loading.js" />
         <option value="$PROJECT_DIR$/test/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/late-loading.js" />
         <option value="$PROJECT_DIR$/src/in-the-headlines.js" />
       </list>
     </option>
@@ -175,6 +176,11 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="cs-wp-in-the-headlines" type="cbb8eebc:String" user="cs-wp-in-the-headlines" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="cs-wp-in-the-headlines" type="cbb8eebc:String" user="cs-wp-in-the-headlines" />
+              <item name="dist" type="cbb8eebc:String" user="dist" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -272,12 +278,12 @@
       <workItem from="1520865961168" duration="164000" />
       <workItem from="1520866163920" duration="26000" />
       <workItem from="1520866201158" duration="189000" />
-      <workItem from="1520945604941" duration="15528000" />
+      <workItem from="1520945604941" duration="18584000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15907000" />
+    <option name="totallyTimeSpent" value="18963000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1176" extended-state="6" />
@@ -394,17 +400,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dist/late-loading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/late-loading.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/in-the-headlines.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="527">
+          <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
         </state>
       </provider>
     </entry>
