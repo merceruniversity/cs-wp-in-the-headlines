@@ -46,7 +46,7 @@ export default class InTheHeadlines {
     return `
       <div class="swiper-slide">
         <img alt="${imageTitle}" src="${imageUrl}">
-        <h3>${headline}</h3>
+        <h3><a href="${slideData.link}">${headline}</a></h3>
       </div>
     `;
   }

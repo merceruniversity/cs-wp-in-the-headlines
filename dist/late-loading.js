@@ -170,7 +170,7 @@ var InTheHeadlines = function () {
       var imageTitle = firstFeaturedMedia.rendered;
       // let imageUrl = ``;
       var imageUrl = firstFeaturedMedia.source_url;
-      return '\n      <div class="swiper-slide">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3>' + headline + '</h3>\n      </div>\n    ';
+      return '\n      <div class="swiper-slide">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3><a href="' + slideData.link + '">' + headline + '</a></h3>\n      </div>\n    ';
     }
   }]);
 
@@ -190,17 +190,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var fetchJsonp = require('fetch-jsonp');
 
-fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed', {
-  jsonpCallback: '_jsonp'
-}).then(function (response) {
-  return response.json();
-}).then(function (json) {
-  console.log('parsed json', json);
-  var ith = new _inTheHeadlines2.default(json);
-  var ithContainer = document.getElementById('in-the-headlines-container');
-  // console.log(ithContainer);
-  ithContainer.innerHTML = ith.toHtml();
-  var mySwiper = new Swiper('.swiper-container', {
+var renderSwiper = function renderSwiper(instance) {
+  var container = instance.querySelectorAll('.swiper-container');
+  var options = {
     // Optional parameters
     loop: true,
 
@@ -245,9 +237,35 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
         spaceBetween: 10
       }
     }
+  };
+  var mySwiper = new Swiper(container, options);
+};
+
+var renderInstance = function renderInstance(instance) {
+  console.log(instance);
+  var url = instance.getAttribute('data-url');
+  fetchJsonp(url, {
+    jsonpCallback: '_jsonp'
+  }).then(function (response) {
+    return response.json();
+  }).then(function (json) {
+    console.log('parsed json', json);
+    var ith = new _inTheHeadlines2.default(json);
+    // console.log(ithContainer);
+    instance.innerHTML = ith.toHtml();
+    renderSwiper(instance);
+  }).catch(function (ex) {
+    console.log('parsing failed', ex);
   });
-}).catch(function (ex) {
-  console.log('parsing failed', ex);
-});
+};
+
+var onDomLoad = function onDomLoad() {
+  var inTheHeadlines = document.querySelectorAll('.in-the-headlines');
+  inTheHeadlines.forEach(function (instance) {
+    return renderInstance(instance);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', onDomLoad);
 
 },{"./in-the-headlines":2,"fetch-jsonp":1}]},{},[3]);

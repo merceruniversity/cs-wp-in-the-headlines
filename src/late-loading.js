@@ -4,17 +4,9 @@ const fetchJsonp = require('fetch-jsonp');
 
 import InTheHeadlines from './in-the-headlines';
 
-fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed', {
-  jsonpCallback: '_jsonp'
-}).then(function(response) {
-  return response.json();
-}).then(function(json) {
-  console.log('parsed json', json);
-  let ith = new InTheHeadlines(json);
-  let ithContainer = document.getElementById('in-the-headlines-container');
-  // console.log(ithContainer);
-  ithContainer.innerHTML = ith.toHtml();
-  var mySwiper = new Swiper ('.swiper-container', {
+let renderSwiper = function(instance) {
+  let container = instance.querySelectorAll('.swiper-container');
+  let options = {
     // Optional parameters
     loop: true,
 
@@ -38,7 +30,6 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
     slidesPerView: 4,
     spaceBetween: 40,
 
-
     // Responsive breakpoints
     breakpoints: {
 
@@ -60,7 +51,31 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
         spaceBetween: 10
       }
     }
+  }
+  let mySwiper = new Swiper (container, options);
+}
+
+let renderInstance = function(instance) {
+  console.log(instance);
+  let url = instance.getAttribute('data-url');
+  fetchJsonp(url, {
+    jsonpCallback: '_jsonp'
+  }).then(function(response) {
+    return response.json();
+  }).then(function(json) {
+    console.log('parsed json', json);
+    let ith = new InTheHeadlines(json);
+    // console.log(ithContainer);
+    instance.innerHTML = ith.toHtml();
+    renderSwiper(instance);
+  }).catch(function(ex) {
+    console.log('parsing failed', ex);
   });
-}).catch(function(ex) {
-  console.log('parsing failed', ex);
-});
+}
+
+let onDomLoad = function() {
+  let inTheHeadlines = document.querySelectorAll('.in-the-headlines');
+  inTheHeadlines.forEach(instance => renderInstance(instance));
+}
+
+document.addEventListener('DOMContentLoaded', onDomLoad);
