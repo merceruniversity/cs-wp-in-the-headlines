@@ -2,27 +2,26 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width">
+        <title>New In The Headlines Test</title>
+        <!-- Begin early-loading resources (probably CSS) -->
         <link href="./resources/swiper/swiper.min.css" rel="stylesheet">
         <link href="./resources/early-loading.css" rel="stylesheet">
+        <!-- End early-loading resources (probably CSS) -->
     </head>
     <body>
 
         <h1>Testing</h1>
 
-        <div id="in-the-headlines-container"></div>
+        <!-- Begin pseudo-element -->
+        <div
+            class="in-the-headlines"
+            data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=20&order=desc&orderby=date&categories=8&_embed"></div>
+        <a href="#">More News</a>
+        <!-- End pseudo-element -->
 
+        <!-- Begin late-loading resources (probably JS) -->
         <script src="./resources/swiper/swiper.js"></script>
         <script src="./resources/late-loading.js"></script>
-        <script>
-            // (function(){
-            //   var jsonpUrl = 'http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed&_jsonp=test';
-            //   var inTheNewsContainer = document.getElementById('in-the-news-container');
-            //   fetchJSONP(jsonpUrl);
-            // })();
-
-            // element argument can be a selector string
-            //   for an individual element
-
-        </script>
+        <!-- End late-loading resources (probably JS) -->
     </body>
 </html>
