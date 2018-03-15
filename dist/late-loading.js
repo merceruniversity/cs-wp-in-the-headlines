@@ -170,7 +170,7 @@ var InTheHeadlines = function () {
       var imageTitle = firstFeaturedMedia.rendered;
       // let imageUrl = ``;
       var imageUrl = firstFeaturedMedia.source_url;
-      return '\n      <div class="swiper-slide">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3>' + headline + '</h3>\n      </div>\n    ';
+      return '\n      <div class="swiper-slide">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3><a href="' + slideData.link + '">' + headline + '</a></h3>\n      </div>\n    ';
     }
   }]);
 
