@@ -155,7 +155,7 @@ var InTheHeadlines = function () {
       slidesHtml = slidesHtml.join('');
       // console.log(slidesHtml);
 
-      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="swiper-pagination"></div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="swiper-button-prev"></div>\n        <div class="swiper-button-next"></div>\n        \n      </div>\n    ';
+      return '\n      <div class="carousel">\n        ' + slidesHtml + '\n      </div>\n    ';
     }
   }, {
     key: 'slideHtml',
@@ -170,7 +170,7 @@ var InTheHeadlines = function () {
       var imageTitle = firstFeaturedMedia.rendered;
       // let imageUrl = ``;
       var imageUrl = firstFeaturedMedia.source_url;
-      return '\n      <div class="swiper-slide">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3>' + headline + '</h3>\n      </div>\n    ';
+      return '\n      <img alt="' + imageTitle + '" src="' + imageUrl + '">\n      <h3>' + headline + '</h3>\n    ';
     }
   }]);
 
@@ -200,52 +200,6 @@ fetchJsonp('http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed',
   var ithContainer = document.getElementById('in-the-headlines-container');
   // console.log(ithContainer);
   ithContainer.innerHTML = ith.toHtml();
-  var mySwiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    loop: true,
-
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination'
-    },
-
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-
-    // And if we need scrollbar
-    //scrollbar: {
-    //  el: '.swiper-scrollbar',
-    //},
-
-    // Default parameters
-    slidesPerView: 4,
-    spaceBetween: 40,
-
-    // Responsive breakpoints
-    breakpoints: {
-
-      // when window width is <= 1440px
-      1440: {
-        slidesPerView: 3,
-        spaceBetween: 30
-      },
-
-      // when window width is <= 1024px
-      1024: {
-        slidesPerView: 2,
-        spaceBetween: 20
-      },
-
-      // when window width is <= 768px
-      768: {
-        slidesPerView: 1,
-        spaceBetween: 10
-      }
-    }
-  });
 }).catch(function (ex) {
   console.log('parsing failed', ex);
 });

@@ -1,8 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width">
-        <link href="./resources/swiper/swiper.min.css" rel="stylesheet">
+        <link href="./resources/flickity/flickity.css" rel="stylesheet">
         <link href="./resources/early-loading.css" rel="stylesheet">
     </head>
     <body>
@@ -11,7 +10,7 @@
 
         <div id="in-the-headlines-container"></div>
 
-        <script src="./resources/swiper/swiper.js"></script>
+        <script src="./resources/flickity/flickity.pkgd.js"></script>
         <script src="./resources/late-loading.js"></script>
         <script>
             // (function(){
@@ -19,10 +18,11 @@
             //   var inTheNewsContainer = document.getElementById('in-the-news-container');
             //   fetchJSONP(jsonpUrl);
             // })();
-
-            // element argument can be a selector string
-            //   for an individual element
-
+            $('.main-carousel').flickity({
+              // options
+              cellAlign: 'left',
+              contain: true
+            });
         </script>
     </body>
 </html>
