@@ -6,6 +6,9 @@ A CommonSpot element to render news articles for the In The Headlines section of
 
 [Posts tagged with Law](http://munews.wpengine.com/wp-json/wp/v2/posts?categories=8&_embed&_jsonp=test)
 
+## Tags
+- featured = 19
+
 ## Categories
 - Business & Economics =26 
 - Education = 5
