@@ -37,12 +37,12 @@ export default class InTheHeadlines {
     // console.log(slideData.title);
     // console.log(slideData.title.rendered);
     // console.log(slideData._embedded['wp:featuredmedia']);
-    let firstFeaturedMedia = slideData._embedded['wp:featuredmedia'][0];
-    let headline = slideData.title.rendered;
-    // let imageTitle = ``;
-    let imageTitle = firstFeaturedMedia.rendered;
     // let imageUrl = ``;
-    let imageUrl = firstFeaturedMedia.source_url;
+    // let imageTitle = ``;
+    let headline = slideData.title.rendered;
+    let firstFeaturedMedia = slideData._embedded['wp:featuredmedia'][0];
+    let imageTitle = firstFeaturedMedia.rendered;
+    let imageUrl = firstFeaturedMedia.media_details.sizes.bk620_420.source_url;
     return `
       <div class="swiper-slide">
         <img alt="${imageTitle}" src="${imageUrl}">

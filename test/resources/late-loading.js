@@ -125,6 +125,313 @@
 },{}],2:[function(require,module,exports){
 'use strict';
 
+var isArray    = require('is-array');
+var isWindow   = require('is-window');
+var isFunction = require('is-function');
+
+
+module.exports = function (obj) {
+
+  if (!obj) {
+    return false;
+  }
+
+  if (isArray(obj)) {
+    return true;
+  }
+
+  if (isFunction(obj) || isWindow(obj)) {
+    return false;
+  }
+
+  obj = Object(obj);
+
+  var length = 'length' in obj && obj.length;
+
+  if (obj.nodeType === 1 && length) {
+    return true;
+  }
+
+  return length === 0 ||
+    typeof length === 'number' && length > 0 && ( length - 1 ) in obj;
+};
+
+},{"is-array":3,"is-function":4,"is-window":10}],3:[function(require,module,exports){
+
+/**
+ * isArray
+ */
+
+var isArray = Array.isArray;
+
+/**
+ * toString
+ */
+
+var str = Object.prototype.toString;
+
+/**
+ * Whether or not the given `val`
+ * is an array.
+ *
+ * example:
+ *
+ *        isArray([]);
+ *        // > true
+ *        isArray(arguments);
+ *        // > false
+ *        isArray('');
+ *        // > false
+ *
+ * @param {mixed} val
+ * @return {bool}
+ */
+
+module.exports = isArray || function (val) {
+  return !! val && '[object Array]' == str.call(val);
+};
+
+},{}],4:[function(require,module,exports){
+module.exports = isFunction
+
+var toString = Object.prototype.toString
+
+function isFunction (fn) {
+  var string = toString.call(fn)
+  return string === '[object Function]' ||
+    (typeof fn === 'function' && string !== '[object RegExp]') ||
+    (typeof window !== 'undefined' &&
+     // IE8 and below
+     (fn === window.setTimeout ||
+      fn === window.alert ||
+      fn === window.confirm ||
+      fn === window.prompt))
+};
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+var isNil = require('is-nil');
+
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+module.exports = function (value, length) {
+
+  value  = (typeof value === 'number' || /^(?:0|[1-9]\d*)$/.test(value)) ? +value : -1;
+  length = isNil(length) ? MAX_SAFE_INTEGER : length;
+
+  return value > -1 && value % 1 === 0 && value < length;
+};
+
+},{"is-nil":7}],6:[function(require,module,exports){
+'use strict';
+
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+module.exports = function (value) {
+
+  return typeof value === 'number'
+    && value > -1
+    && value % 1 === 0
+    && value <= MAX_SAFE_INTEGER; // max safe integer
+};
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+module.exports = function (obj) {
+
+  return obj == null;
+};
+
+},{}],8:[function(require,module,exports){
+"use strict";
+
+module.exports = function isObject(x) {
+	return typeof x === "object" && x !== null;
+};
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+var toStr = Object.prototype.toString;
+var hasSymbols = typeof Symbol === 'function' && typeof Symbol() === 'symbol';
+
+if (hasSymbols) {
+	var symToStr = Symbol.prototype.toString;
+	var symStringRegex = /^Symbol\(.*\)$/;
+	var isSymbolObject = function isSymbolObject(value) {
+		if (typeof value.valueOf() !== 'symbol') { return false; }
+		return symStringRegex.test(symToStr.call(value));
+	};
+	module.exports = function isSymbol(value) {
+		if (typeof value === 'symbol') { return true; }
+		if (toStr.call(value) !== '[object Symbol]') { return false; }
+		try {
+			return isSymbolObject(value);
+		} catch (e) {
+			return false;
+		}
+	};
+} else {
+	module.exports = function isSymbol(value) {
+		// this environment does not support Symbols.
+		return false;
+	};
+}
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+module.exports = function (obj) {
+
+  if (obj == null) {
+    return false;
+  }
+
+  var o = Object(obj);
+
+  return o === o.window;
+};
+
+},{}],11:[function(require,module,exports){
+'use strict';
+
+var isNil       = require('is-nil');
+var toPath      = require('to-path');
+var isIndex     = require('is-index');
+var isLength    = require('is-length');
+var isArrayLike = require('is-array-like');
+
+function hasOwn(object, key) {
+  // Avoid a bug in IE 10-11 where objects with a [[Prototype]] of `null`,
+  // that are composed entirely of index properties, return `false` for
+  // `hasOwnProperty` checks of them.
+  return Object.prototype.hasOwnProperty.call(object, key) ||
+    (typeof object === 'object' && key in object && Object.getPrototypeOf(object) === null);
+}
+
+module.exports = function (object, path) {
+
+  if (isNil(object)) {
+    return false;
+  }
+
+  var paths  = toPath(path);
+  var index  = -1;
+  var length = paths.length;
+
+  var key;
+  var result;
+
+  while (++index < length) {
+
+    key    = paths[index];
+    result = !isNil(object) && hasOwn(object, key);
+
+    if (!result) {
+      break;
+    }
+
+    object = object[key];
+  }
+
+
+  if (result) {
+    return result;
+  }
+
+
+  length = object ? object.length : 0;
+
+  return !!length && isLength(length) && isIndex(key, length) && isArrayLike(object);
+
+};
+
+},{"is-array-like":2,"is-index":5,"is-length":6,"is-nil":7,"to-path":12}],12:[function(require,module,exports){
+'use strict';
+
+var isNil       = require('is-nil');
+var isSymbol    = require('is-symbol');
+var isArrayLike = require('is-array-like');
+var toString    = require('to-str');
+
+var rePropName   = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]/g;
+var reEscapeChar = /\\(\\)?/g;
+
+
+function toKey(key) {
+  return (typeof key === 'string' || isSymbol(key))
+    ? key
+    : ('' + key);
+}
+
+
+module.exports = function (value) {
+
+  if (isNil(value)) {
+    return [];
+  }
+
+  if (isSymbol(value)) {
+    return [value];
+  }
+
+
+  var result = [];
+
+  if (typeof value !== 'string' && isArrayLike(value)) {
+    for (var i = 0, l = value.length; i < l; i++) {
+      result.push(toKey(value[i]));
+    }
+    return result;
+  }
+
+
+  toString(value)
+    .replace(rePropName, function (match, number, quote, string) {
+      result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+    });
+
+  return result;
+};
+
+},{"is-array-like":2,"is-nil":7,"is-symbol":9,"to-str":13}],13:[function(require,module,exports){
+'use strict';
+
+/* global Symbol */
+
+var isNil      = require('is-nil');
+var isSymbol   = require('is-symbol');
+var isObject   = require('is-object');
+var isFunction = require('is-function');
+
+module.exports = function (value) {
+
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (isNil(value)) {
+    return '';
+  }
+
+  if (isSymbol(value)) {
+    return Symbol.prototype.toString.call(value);
+  }
+
+  if (isObject(value) && isFunction(value.toString)) {
+    return value.toString();
+  }
+
+  var result = '' + value;
+
+  return (result === '0' && (1 / value) === -1 / 0) ? '-0' : result;
+};
+
+},{"is-function":4,"is-nil":7,"is-object":8,"is-symbol":9}],14:[function(require,module,exports){
+'use strict';
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -164,12 +471,12 @@ var InTheHeadlines = function () {
       // console.log(slideData.title);
       // console.log(slideData.title.rendered);
       // console.log(slideData._embedded['wp:featuredmedia']);
-      var firstFeaturedMedia = slideData._embedded['wp:featuredmedia'][0];
-      var headline = slideData.title.rendered;
-      // let imageTitle = ``;
-      var imageTitle = firstFeaturedMedia.rendered;
       // let imageUrl = ``;
-      var imageUrl = firstFeaturedMedia.source_url;
+      // let imageTitle = ``;
+      var headline = slideData.title.rendered;
+      var firstFeaturedMedia = slideData._embedded['wp:featuredmedia'][0];
+      var imageTitle = firstFeaturedMedia.rendered;
+      var imageUrl = firstFeaturedMedia.media_details.sizes.bk620_420.source_url;
       return '\n      <div class="swiper-slide">\n        <img alt="' + imageTitle + '" src="' + imageUrl + '">\n        <h3><a href="' + slideData.link + '">' + headline + '</a></h3>\n      </div>\n    ';
     }
   }]);
@@ -179,7 +486,7 @@ var InTheHeadlines = function () {
 
 exports.default = InTheHeadlines;
 
-},{}],3:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 var _inTheHeadlines = require('./in-the-headlines');
@@ -189,6 +496,7 @@ var _inTheHeadlines2 = _interopRequireDefault(_inTheHeadlines);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var fetchJsonp = require('fetch-jsonp');
+var objectHas = require('object-has');
 
 var renderSwiper = function renderSwiper(instance) {
   var container = instance.querySelectorAll('.swiper-container');
@@ -250,6 +558,7 @@ var renderInstance = function renderInstance(instance) {
     return response.json();
   }).then(function (json) {
     console.log('parsed json', json);
+    json = filterNoImageArticles(json);
     var ith = new _inTheHeadlines2.default(json);
     // console.log(ithContainer);
     instance.innerHTML = ith.toHtml();
@@ -260,12 +569,21 @@ var renderInstance = function renderInstance(instance) {
 };
 
 var onDomLoad = function onDomLoad() {
-  var inTheHeadlines = document.querySelectorAll('.in-the-headlines');
-  inTheHeadlines.forEach(function (instance) {
+  var instances = document.querySelectorAll('.in-the-headlines');
+  instances.forEach(function (instance) {
     return renderInstance(instance);
+  });
+};
+
+var filterNoImageArticles = function filterNoImageArticles(posts) {
+  return posts.filter(function (post) {
+    console.log(post);
+    console.log(objectHas(post, '_embedded.wp:featuredmedia'));
+    console.log(objectHas(post, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420'));
+    return objectHas(post, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420');
   });
 };
 
 document.addEventListener('DOMContentLoaded', onDomLoad);
 
-},{"./in-the-headlines":2,"fetch-jsonp":1}]},{},[3]);
+},{"./in-the-headlines":14,"fetch-jsonp":1,"object-has":11}]},{},[15]);

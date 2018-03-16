@@ -1,6 +1,7 @@
 'use strict';
 
 const fetchJsonp = require('fetch-jsonp');
+const objectHas = require('object-has');
 
 import InTheHeadlines from './in-the-headlines';
 
@@ -64,6 +65,7 @@ let renderInstance = function(instance) {
     return response.json();
   }).then(function(json) {
     console.log('parsed json', json);
+    json = filterNoImageArticles(json);
     let ith = new InTheHeadlines(json);
     // console.log(ithContainer);
     instance.innerHTML = ith.toHtml();
@@ -74,8 +76,17 @@ let renderInstance = function(instance) {
 }
 
 let onDomLoad = function() {
-  let inTheHeadlines = document.querySelectorAll('.in-the-headlines');
-  inTheHeadlines.forEach(instance => renderInstance(instance));
+  let instances = document.querySelectorAll('.in-the-headlines');
+  instances.forEach(instance => renderInstance(instance));
+}
+
+let filterNoImageArticles = function(posts) {
+  return posts.filter((post) => {
+    console.log(post);
+    console.log(objectHas(post, '_embedded.wp:featuredmedia'));
+    console.log(objectHas(post, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420'));
+    return objectHas(post, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420');
+  });
 }
 
 document.addEventListener('DOMContentLoaded', onDomLoad);
