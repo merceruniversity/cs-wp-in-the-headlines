@@ -22,8 +22,8 @@ let initSwiper = function(instance) {
 
     // Navigation arrows
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.in-the-headlines__next',
+      prevEl: '.in-the-headlines__prev',
     },
 
     // And if we need scrollbar

@@ -525,12 +525,12 @@ var InTheHeadlines = function () {
       });
       slidesHtml = slidesHtml.join('');
 
-      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="swiper-pagination"></div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="swiper-button-prev"></div>\n        <div class="swiper-button-next"></div>\n        \n      </div>\n    ';
+      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="swiper-pagination"></div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="in-the-headlines__prev">\n            <span class="sr-only">Previous</span>\n            <!-- SVG -->\n        </div>\n        <div class="in-the-headlines__next">\n            <span class="sr-only">Next</span>\n            <!-- SVG -->\n        </div>\n        \n      </div>\n    ';
     }
   }, {
     key: 'slideHtml',
     value: function slideHtml(slideData) {
-      return '\n      <div class="swiper-slide">\n        <img alt="' + slideData.imageAlt + '" src="' + slideData.imageUrl + '">\n        <h3><a href="' + slideData.articleUrl + '">' + slideData.headline + '</a></h3>\n      </div>\n    ';
+      return '\n      <div class="swiper-slide">\n        <div class="in-the-headlines__slide">\n          <a class="in-the-headlines__image-link" href="' + slideData.articleUrl + '">\n            <img class="in-the-headlines__image" alt="' + slideData.imageAlt + '" src="' + slideData.imageUrl + '">\n          </a>\n          <h3 class="in-the-headlines__headline">\n            <a class="in-the-headlines__headline-link" href="' + slideData.articleUrl + '">' + slideData.headline + '</a>\n          </h3>\n        </div>\n      </div>\n    ';
     }
   }]);
 
@@ -571,8 +571,8 @@ var initSwiper = function initSwiper(instance) {
 
     // Navigation arrows
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+      nextEl: '.in-the-headlines__next',
+      prevEl: '.in-the-headlines__prev'
     },
 
     // And if we need scrollbar

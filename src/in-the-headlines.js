@@ -33,8 +33,14 @@ export default class InTheHeadlines {
         <div class="swiper-pagination"></div>
      
         <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="in-the-headlines__prev">
+            <span class="sr-only">Previous</span>
+            <!-- SVG -->
+        </div>
+        <div class="in-the-headlines__next">
+            <span class="sr-only">Next</span>
+            <!-- SVG -->
+        </div>
         
       </div>
     `;
@@ -43,8 +49,14 @@ export default class InTheHeadlines {
   slideHtml (slideData) {
     return `
       <div class="swiper-slide">
-        <img alt="${slideData.imageAlt}" src="${slideData.imageUrl}">
-        <h3><a href="${slideData.articleUrl}">${slideData.headline}</a></h3>
+        <div class="in-the-headlines__slide">
+          <a class="in-the-headlines__image-link" href="${slideData.articleUrl}">
+            <img class="in-the-headlines__image" alt="${slideData.imageAlt}" src="${slideData.imageUrl}">
+          </a>
+          <h3 class="in-the-headlines__headline">
+            <a class="in-the-headlines__headline-link" href="${slideData.articleUrl}">${slideData.headline}</a>
+          </h3>
+        </div>
       </div>
     `;
   }
