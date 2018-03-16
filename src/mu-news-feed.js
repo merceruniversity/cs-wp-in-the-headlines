@@ -14,7 +14,9 @@ export default class MuNewsFeed {
    * @param {string} json - The URL to the JSONP feed
    */
   constructor(json) {
-    this.url = json;
+    let tmpJson = json;
+    tmpJson = this.filterNoImageArticles(tmpJson);
+    this.json = tmpJson;
   }
 
   /**
@@ -22,22 +24,7 @@ export default class MuNewsFeed {
    * @return {array} The articles that can be rendered
    */
   getArticles() {
-    // let articles = fetchJsonp(this.url, {
-    //   jsonpCallback: '_jsonp'
-    // }).then((response) => {
-    //   return response.json();
-    // }).then((json) => {
-    //   // console.log('parsed articles', articles);
-    //   json = this.filterNoImageArticles(json);
-    //   console.log(json, 'articles filtered for just good images');
-    //   let usefulData = this.usefulData(json);
-    //   console.log(usefulData, 'just the useful data');
-    //   return usefulData;
-    // }).catch((ex) => {
-    //   console.log('parsing failed', ex);
-    // });
-    // console.log(articles, 'articles in getArticles');
-    // return articles;
+    return this.usefulData(this.json);
   }
 
   /**
@@ -45,6 +32,7 @@ export default class MuNewsFeed {
    * @param {object} json
    */
   usefulData (json) {
+    console.log(json, 'json in usefulData');
     return json.map((datum) => {
       let imageAlt = objectGet(datum, '_embedded.wp:featuredmedia[0].alt_text');
       if (0 === imageAlt.length) {
@@ -56,7 +44,7 @@ export default class MuNewsFeed {
       let usefulDatum = {};
       usefulDatum.articleUrl = objectGet(datum, 'link');
       usefulDatum.headline   = objectGet(datum, 'title.rendered');
-      usefulDatum.imageUrl   = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420');
+      usefulDatum.imageUrl   = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.source_url');
       usefulDatum.imageAlt   = imageAlt;
       return usefulDatum;
     });

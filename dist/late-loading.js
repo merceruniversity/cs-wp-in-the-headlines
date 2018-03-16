@@ -530,7 +530,7 @@ var InTheHeadlines = function () {
   }, {
     key: 'slideHtml',
     value: function slideHtml(slideData) {
-      return '\n      <div class="swiper-slide">\n        <img alt="' + imageAlt + '" src="' + imageUrl + '">\n        <h3><a href="' + articleUrl + '">' + headline + '</a></h3>\n      </div>\n    ';
+      return '\n      <div class="swiper-slide">\n        <img alt="' + slideData.imageAlt + '" src="' + slideData.imageUrl + '">\n        <h3><a href="' + slideData.articleUrl + '">' + slideData.headline + '</a></h3>\n      </div>\n    ';
     }
   }]);
 
@@ -558,56 +558,56 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var fetchJsonp = require('fetch-jsonp');
 
-// let renderSwiper = function(instance) {
-//   let container = instance.querySelectorAll('.swiper-container');
-//   let options = {
-//     // Optional parameters
-//     loop: true,
-//
-//     // If we need pagination
-//     pagination: {
-//       el: '.swiper-pagination',
-//     },
-//
-//     // Navigation arrows
-//     navigation: {
-//       nextEl: '.swiper-button-next',
-//       prevEl: '.swiper-button-prev',
-//     },
-//
-//     // And if we need scrollbar
-//     //scrollbar: {
-//     //  el: '.swiper-scrollbar',
-//     //},
-//
-//     // Default parameters
-//     slidesPerView: 4,
-//     spaceBetween: 40,
-//
-//     // Responsive breakpoints
-//     breakpoints: {
-//
-//       // when window width is <= 1440px
-//       1440: {
-//         slidesPerView: 3,
-//         spaceBetween: 30
-//       },
-//
-//       // when window width is <= 1024px
-//       1024: {
-//         slidesPerView: 2,
-//         spaceBetween: 20
-//       },
-//
-//       // when window width is <= 768px
-//       768: {
-//         slidesPerView: 1,
-//         spaceBetween: 10
-//       }
-//     }
-//   }
-//   let mySwiper = new Swiper (container, options);
-// };
+var initSwiper = function initSwiper(instance) {
+  var container = instance.querySelectorAll('.swiper-container');
+  var options = {
+    // Optional parameters
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination'
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+
+    // And if we need scrollbar
+    //scrollbar: {
+    //  el: '.swiper-scrollbar',
+    //},
+
+    // Default parameters
+    slidesPerView: 4,
+    spaceBetween: 40,
+
+    // Responsive breakpoints
+    breakpoints: {
+
+      // when window width is <= 1440px
+      1440: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      },
+
+      // when window width is <= 1024px
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+
+      // when window width is <= 768px
+      768: {
+        slidesPerView: 1,
+        spaceBetween: 10
+      }
+    }
+  };
+  var mySwiper = new Swiper(container, options);
+};
 
 var renderInstance = function renderInstance(instance) {
   console.log(instance);
@@ -619,21 +619,15 @@ var renderInstance = function renderInstance(instance) {
     return response.json();
   }).then(function (json) {
     // console.log('parsed articles', articles);
-    var munf = (0, _muNewsFeed2.default)(json);
-    articles = munf.getArticles();
-    var ith = (0, _inTheHeadlines2.default)(articles);
+    var munf = new _muNewsFeed2.default(json);
+    var articles = munf.getArticles();
+    var ith = new _inTheHeadlines2.default(articles);
     instance.innerHTML = ith.toHtml();
-    // TODO: initSwiper
+    initSwiper(instance);
   }).catch(function (ex) {
     console.log('parsing failed', ex);
   });
-  console.log(articles, 'articles in getArticles');
-  return articles;
-  var munf = new _muNewsFeed2.default(url);
-  var articles = munf.getArticles();
-  var ith = new _inTheHeadlines2.default(articles);
-  instance.innerHTML = ith.toHtml();
-  // renderSwiper(instance);
+  // initSwiper(instance);
 };
 
 var onDomLoad = function onDomLoad() {
@@ -675,7 +669,9 @@ var MuNewsFeed = function () {
   function MuNewsFeed(json) {
     _classCallCheck(this, MuNewsFeed);
 
-    this.url = json;
+    var tmpJson = json;
+    tmpJson = this.filterNoImageArticles(tmpJson);
+    this.json = tmpJson;
   }
 
   /**
@@ -686,24 +682,9 @@ var MuNewsFeed = function () {
 
   _createClass(MuNewsFeed, [{
     key: 'getArticles',
-    value: function getArticles() {}
-    // let articles = fetchJsonp(this.url, {
-    //   jsonpCallback: '_jsonp'
-    // }).then((response) => {
-    //   return response.json();
-    // }).then((json) => {
-    //   // console.log('parsed articles', articles);
-    //   json = this.filterNoImageArticles(json);
-    //   console.log(json, 'articles filtered for just good images');
-    //   let usefulData = this.usefulData(json);
-    //   console.log(usefulData, 'just the useful data');
-    //   return usefulData;
-    // }).catch((ex) => {
-    //   console.log('parsing failed', ex);
-    // });
-    // console.log(articles, 'articles in getArticles');
-    // return articles;
-
+    value: function getArticles() {
+      return this.usefulData(this.json);
+    }
 
     /**
      * Returns just the useful parts of the JSON feed
@@ -713,6 +694,7 @@ var MuNewsFeed = function () {
   }, {
     key: 'usefulData',
     value: function usefulData(json) {
+      console.log(json, 'json in usefulData');
       return json.map(function (datum) {
         var imageAlt = objectGet(datum, '_embedded.wp:featuredmedia[0].alt_text');
         if (0 === imageAlt.length) {
@@ -724,7 +706,7 @@ var MuNewsFeed = function () {
         var usefulDatum = {};
         usefulDatum.articleUrl = objectGet(datum, 'link');
         usefulDatum.headline = objectGet(datum, 'title.rendered');
-        usefulDatum.imageUrl = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420');
+        usefulDatum.imageUrl = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.source_url');
         usefulDatum.imageAlt = imageAlt;
         return usefulDatum;
       });

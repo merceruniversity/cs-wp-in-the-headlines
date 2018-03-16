@@ -43,8 +43,8 @@ export default class InTheHeadlines {
   slideHtml (slideData) {
     return `
       <div class="swiper-slide">
-        <img alt="${imageAlt}" src="${imageUrl}">
-        <h3><a href="${articleUrl}">${headline}</a></h3>
+        <img alt="${slideData.imageAlt}" src="${slideData.imageUrl}">
+        <h3><a href="${slideData.articleUrl}">${slideData.headline}</a></h3>
       </div>
     `;
   }
