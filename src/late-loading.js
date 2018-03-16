@@ -1,10 +1,15 @@
+/**
+ * @author Todd Sayre
+ */
+
 'use strict';
+
+import MuNewsFeed from './mu-news-feed';
+import InTheHeadlines from './in-the-headlines';
 
 const fetchJsonp = require('fetch-jsonp');
 
-import InTheHeadlines from './in-the-headlines';
-
-let renderSwiper = function(instance) {
+let initSwiper = function(instance) {
   let container = instance.querySelectorAll('.swiper-container');
   let options = {
     // Optional parameters
@@ -17,8 +22,8 @@ let renderSwiper = function(instance) {
 
     // Navigation arrows
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.in-the-headlines__next',
+      prevEl: '.in-the-headlines__prev',
     },
 
     // And if we need scrollbar
@@ -53,29 +58,32 @@ let renderSwiper = function(instance) {
     }
   }
   let mySwiper = new Swiper (container, options);
-}
+};
 
 let renderInstance = function(instance) {
   console.log(instance);
   let url = instance.getAttribute('data-url');
+  // console.log(url);
   fetchJsonp(url, {
     jsonpCallback: '_jsonp'
-  }).then(function(response) {
+  }).then((response) => {
     return response.json();
-  }).then(function(json) {
-    console.log('parsed json', json);
-    let ith = new InTheHeadlines(json);
-    // console.log(ithContainer);
+  }).then((json) => {
+    // console.log('parsed articles', articles);
+    let munf = new MuNewsFeed(json);
+    let articles = munf.getArticles();
+    let ith = new InTheHeadlines(articles);
     instance.innerHTML = ith.toHtml();
-    renderSwiper(instance);
-  }).catch(function(ex) {
+    initSwiper(instance);
+  }).catch((ex) => {
     console.log('parsing failed', ex);
   });
-}
+  // initSwiper(instance);
+};
 
 let onDomLoad = function() {
-  let inTheHeadlines = document.querySelectorAll('.in-the-headlines');
-  inTheHeadlines.forEach(instance => renderInstance(instance));
-}
+  let instances = document.querySelectorAll('.in-the-headlines');
+  instances.forEach(instance => renderInstance(instance));
+};
 
 document.addEventListener('DOMContentLoaded', onDomLoad);

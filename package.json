@@ -51,6 +51,8 @@
     "mkdirp": "^0.5.1",
     "node-sass": "^4.8.1",
     "npm-run-all": "^4.1.2",
+    "object-get": "^2.1.0",
+    "object-has": "^1.0.2",
     "postcss-cli": "^5.0.0",
     "prettier": "^1.11.1",
     "rimraf": "^2.6.2",
