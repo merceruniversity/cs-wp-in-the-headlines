@@ -2,47 +2,86 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width">
-        <title>New In The Headlines Test</title>
+        <title>In The Headlines Element Testing</title>
         <!-- Begin early-loading resources (probably CSS) -->
-        <link href="./resources/swiper/swiper.min.css" rel="stylesheet">
-        <link href="./resources/early-loading.css" rel="stylesheet">
+        <script src="./resources/jquery/jquery.js"></script>
+        <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="./resources/swiper/css/swiper.css" rel="stylesheet">
+        <link href="./resources/in-the-news/early-loading.css" rel="stylesheet">
+        <link href="./resources/test/test.css" rel="stylesheet">
         <!-- End early-loading resources (probably CSS) -->
     </head>
     <body>
 
-        <h1>Testing</h1>
+        <h1>In The Headlines Element Testing</h1>
 
         <h2>University Homepage (tag = 19)</h2>
-        <!-- Begin pseudo-element -->
-        <div
-                class="in-the-headlines"
-                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&tags=19&_embed"></div>
-        <a href="#">More News</a>
-        <!-- End pseudo-element -->
+        <div class="test__row">
+            <h2 class="test__title">In The Headlines</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Begin pseudo-element -->
+                        <div
+                                class="in-the-headlines"
+                                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&tags=19&_embed"></div>
+                        <a href="#">More News</a>
+                        <!-- End pseudo-element -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <h2>Business &amp; Economics (category = 26)</h2>
-        <!-- Begin pseudo-element -->
-        <div
-                class="in-the-headlines"
-                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&categories=15&_embed"></div>
-        <a href="#">More News</a>
-        <!-- End pseudo-element -->
+        <div class="test__row">
+            <h2 class="test__title">In The Headlines</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Begin pseudo-element -->
+                        <div
+                                class="in-the-headlines"
+                                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&categories=15&_embed"></div>
+                        <a href="#">More News</a>
+                        <!-- End pseudo-element -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <h2>Education (category = 5)</h2>
-        <!-- Begin pseudo-element -->
-        <div
-                class="in-the-headlines"
-                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&categories=5&_embed"></div>
-        <a href="#">More News</a>
-        <!-- End pseudo-element -->
+        <div class="test__row">
+            <h2 class="test__title">In The Headlines</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Begin pseudo-element -->
+                        <div
+                                class="in-the-headlines"
+                                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&categories=5&_embed"></div>
+                        <a href="#">More News</a>
+                        <!-- End pseudo-element -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <h2>Engineering (category = 6)</h2>
-        <!-- Begin pseudo-element -->
-        <div
-                class="in-the-headlines"
-                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&categories=6&_embed"></div>
-        <a href="#">More News</a>
-        <!-- End pseudo-element -->
+        <div class="test__row">
+            <h2 class="test__title">In The Headlines</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Begin pseudo-element -->
+                        <div
+                                class="in-the-headlines"
+                                data-url="http://munews.wpengine.com/wp-json/wp/v2/posts?per_page=24&order=desc&orderby=date&categories=6&_embed"></div>
+                        <a href="#">More News</a>
+                        <!-- End pseudo-element -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!--<h2>Health Professions (category = 7)</h2>-->
         <!-- Begin pseudo-element -->
@@ -125,8 +164,9 @@
         <!-- End pseudo-element -->
 
         <!-- Begin late-loading resources (probably JS) -->
-        <script src="./resources/swiper/swiper.js"></script>
-        <script src="./resources/late-loading.js"></script>
+        <script src="./resources/bootstrap/js/bootstrap.js"></script>
+        <script src="./resources/swiper/js/swiper.js"></script>
+        <script src="./resources/in-the-news/late-loading.js"></script>
         <!-- End late-loading resources (probably JS) -->
     </body>
 </html>

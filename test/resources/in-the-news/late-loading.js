@@ -518,19 +518,19 @@ var InTheHeadlines = function () {
       var _this = this;
 
       var slidesHtml = this.articles;
-      console.log(slidesHtml, 'slidesHtml in toHtml');
+      // console.log(slidesHtml, 'slidesHtml in toHtml');
 
       slidesHtml = slidesHtml.map(function (slide) {
         return _this.slideHtml(slide);
       });
       slidesHtml = slidesHtml.join('');
 
-      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="swiper-pagination"></div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="in-the-headlines__prev">\n            <span class="sr-only">Previous</span>\n            <!-- SVG -->\n        </div>\n        <div class="in-the-headlines__next">\n            <span class="sr-only">Next</span>\n            <!-- SVG -->\n        </div>\n        \n      </div>\n    ';
+      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="in-the-headlines__button in-the-headlines__button--prev">\n            <span class="visually-hidden">Previous Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M14.83 21.17L5.66 12l9.17-9.17L12 0 0 12l12 12z"></path><path d="M-16-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        <div class="in-the-headlines__button in-the-headlines__button--next">\n            <span class="visually-hidden">Next Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M0 21.17L9.17 12 0 2.83 2.83 0l12 12-12 12z"></path><path d="M-17.17-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="in-the-headlines__pagination"></div>\n        \n      </div>\n    ';
     }
   }, {
     key: 'slideHtml',
     value: function slideHtml(slideData) {
-      return '\n      <div class="swiper-slide">\n        <div class="in-the-headlines__slide">\n          <a class="in-the-headlines__image-link" href="' + slideData.articleUrl + '">\n            <img class="in-the-headlines__image" alt="' + slideData.imageAlt + '" src="' + slideData.imageUrl + '">\n          </a>\n          <h3 class="in-the-headlines__headline">\n            <a class="in-the-headlines__headline-link" href="' + slideData.articleUrl + '">' + slideData.headline + '</a>\n          </h3>\n        </div>\n      </div>\n    ';
+      return '\n      <div class="swiper-slide">\n        <div class="in-the-headlines__slide">\n          <a class="in-the-headlines__link in-the-headlines__link--image" href="' + slideData.articleUrl + '">\n            <img class="in-the-headlines__image"\n                    alt="' + slideData.imageAlt + '"\n                    src="' + slideData.imageUrl + '"\n                    width="' + slideData.imageWidth + '"\n                    height="' + slideData.imageHeight + '">\n          </a>\n          <h3 class="in-the-headlines__headline">\n            <a class="in-the-headlines__link in-the-headlines__link--headline" href="' + slideData.articleUrl + '">' + slideData.headline + '</a>\n          </h3>\n        </div>\n      </div>\n    ';
     }
   }]);
 
@@ -560,61 +560,47 @@ var fetchJsonp = require('fetch-jsonp');
 
 var initSwiper = function initSwiper(instance) {
   var container = instance.querySelectorAll('.swiper-container');
-  var options = {
-    // Optional parameters
-    loop: true,
 
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination'
-    },
+  var options = {};
+  // Matt likes it when it loops
+  options.loop = true;
+  options.slidesPerView = 4;
+  options.spaceBetween = 40;
 
-    // Navigation arrows
-    navigation: {
-      nextEl: '.in-the-headlines__next',
-      prevEl: '.in-the-headlines__prev'
-    },
+  // Pagination 'pips'
+  options.pagination = {};
+  options.pagination.el = '.swiper-pagination';
 
-    // And if we need scrollbar
-    //scrollbar: {
-    //  el: '.swiper-scrollbar',
-    //},
+  // Navigation 'Previous' & 'Next' buttons
+  options.navigation = {};
+  options.navigation.nextEl = '.in-the-headlines__button--next';
+  options.navigation.prevEl = '.in-the-headlines__button--prev';
 
-    // Default parameters
-    slidesPerView: 4,
-    spaceBetween: 40,
+  // For a responsive design
+  options.breakpoints = {};
+  // When window width is <= 1440px
+  options.breakpoints[1440] = {};
+  options.breakpoints[1440].slidesPerView = 3;
+  options.breakpoints[1440].spaceBetween = 30;
+  // When window width is <= 1024px
+  options.breakpoints[1024] = {};
+  options.breakpoints[1024].slidesPerView = 2;
+  options.breakpoints[1024].spaceBetween = 20;
+  // When window width is <= 768px
+  options.breakpoints[768] = {};
+  options.breakpoints[768].slidesPerView = 1;
+  options.breakpoints[768].spaceBetween = 10;
 
-    // Responsive breakpoints
-    breakpoints: {
-
-      // when window width is <= 1440px
-      1440: {
-        slidesPerView: 3,
-        spaceBetween: 30
-      },
-
-      // when window width is <= 1024px
-      1024: {
-        slidesPerView: 2,
-        spaceBetween: 20
-      },
-
-      // when window width is <= 768px
-      768: {
-        slidesPerView: 1,
-        spaceBetween: 10
-      }
-    }
-  };
   var mySwiper = new Swiper(container, options);
 };
 
 var renderInstance = function renderInstance(instance) {
-  console.log(instance);
+  // console.log(instance);
   var url = instance.getAttribute('data-url');
   // console.log(url);
   fetchJsonp(url, {
-    jsonpCallback: '_jsonp'
+    jsonpCallback: '_jsonp',
+    timeout: 10000
   }).then(function (response) {
     return response.json();
   }).then(function (json) {
@@ -694,7 +680,7 @@ var MuNewsFeed = function () {
   }, {
     key: 'usefulData',
     value: function usefulData(json) {
-      console.log(json, 'json in usefulData');
+      // console.log(json, 'json in usefulData');
       return json.map(function (datum) {
         var imageAlt = objectGet(datum, '_embedded.wp:featuredmedia[0].alt_text');
         if (0 === imageAlt.length) {
@@ -708,6 +694,8 @@ var MuNewsFeed = function () {
         usefulDatum.headline = objectGet(datum, 'title.rendered');
         usefulDatum.imageUrl = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.source_url');
         usefulDatum.imageAlt = imageAlt;
+        usefulDatum.imageWidth = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.width');
+        usefulDatum.imageHeight = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.height');
         return usefulDatum;
       });
     }
