@@ -40,11 +40,12 @@
   }
 
   @include e(more-news-wrapper){
-
+    padding-top: 20px;
+    text-align: right;
   }
 
   @include e(more-news){
-    
+
   }
 
   // Override Swiper Defaults
