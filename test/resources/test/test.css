@@ -1,0 +1,20 @@
+/*
+ * _colors.scss
+ *
+ * Author: Interactive Design & Development
+ * Author URI: https://github.com/InteractiveDesignAndDevelopment
+ * Description: Define colors for the portal rework
+ */
+.test__row {
+  background-color: #f4eee5; }
+
+.test__title::before {
+  content: ' ';
+  position: absolute;
+  left: -3333px;
+  width: 9999px;
+  margin-top: 1em;
+  height: 1px;
+  border-bottom: 1px solid #c95106; }
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRlc3QuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7R0FNRztBQUNIO0VBQ0UsMEJBQTBCLEVBQUU7O0FBRTlCO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixjQUFjO0VBQ2QsY0FBYztFQUNkLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osaUNBQWlDLEVBQUUiLCJmaWxlIjoidGVzdC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxyXG4gKiBfY29sb3JzLnNjc3NcclxuICpcclxuICogQXV0aG9yOiBJbnRlcmFjdGl2ZSBEZXNpZ24gJiBEZXZlbG9wbWVudFxyXG4gKiBBdXRob3IgVVJJOiBodHRwczovL2dpdGh1Yi5jb20vSW50ZXJhY3RpdmVEZXNpZ25BbmREZXZlbG9wbWVudFxyXG4gKiBEZXNjcmlwdGlvbjogRGVmaW5lIGNvbG9ycyBmb3IgdGhlIHBvcnRhbCByZXdvcmtcclxuICovXG4udGVzdF9fcm93IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2Y0ZWVlNTsgfVxuXG4udGVzdF9fdGl0bGU6OmJlZm9yZSB7XG4gIGNvbnRlbnQ6ICcgJztcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBsZWZ0OiAtMzMzM3B4O1xuICB3aWR0aDogOTk5OXB4O1xuICBtYXJnaW4tdG9wOiAxZW07XG4gIGhlaWdodDogMXB4O1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI2M5NTEwNjsgfVxuIl19 */
