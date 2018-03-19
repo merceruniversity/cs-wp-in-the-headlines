@@ -32,7 +32,7 @@ export default class MuNewsFeed {
    * @param {object} json
    */
   usefulData (json) {
-    console.log(json, 'json in usefulData');
+    // console.log(json, 'json in usefulData');
     return json.map((datum) => {
       let imageAlt = objectGet(datum, '_embedded.wp:featuredmedia[0].alt_text');
       if (0 === imageAlt.length) {

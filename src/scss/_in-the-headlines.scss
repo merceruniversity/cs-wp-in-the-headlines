@@ -1,8 +1,3 @@
-@import '../node_modules/sass-bem/bem';
-
-@import 'colors';
-@import 'bootstrap-exerpts';
-
 @include b(in-the-headlines) {
 
   margin: 0 -($grid-gutter-width / 2);

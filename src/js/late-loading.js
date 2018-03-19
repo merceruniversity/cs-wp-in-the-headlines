@@ -46,11 +46,12 @@ let initSwiper = function(instance) {
 };
 
 let renderInstance = function(instance) {
-  console.log(instance);
+  // console.log(instance);
   let url = instance.getAttribute('data-url');
   // console.log(url);
   fetchJsonp(url, {
-    jsonpCallback: '_jsonp'
+    jsonpCallback: '_jsonp',
+    timeout: 10000
   }).then((response) => {
     return response.json();
   }).then((json) => {

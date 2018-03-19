@@ -1,0 +1,9 @@
+@import '../../node_modules/sass-bem/bem';
+
+@import 'colors';
+
+@include b(test) {
+  @include e(row) {
+    background-color: $light-tan;
+  }
+}

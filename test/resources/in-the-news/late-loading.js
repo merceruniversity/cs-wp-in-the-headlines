@@ -518,14 +518,14 @@ var InTheHeadlines = function () {
       var _this = this;
 
       var slidesHtml = this.articles;
-      console.log(slidesHtml, 'slidesHtml in toHtml');
+      // console.log(slidesHtml, 'slidesHtml in toHtml');
 
       slidesHtml = slidesHtml.map(function (slide) {
         return _this.slideHtml(slide);
       });
       slidesHtml = slidesHtml.join('');
 
-      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="in-the-headlines__button in-the-headlines__button--prev">\n            <span class="sr-only">Previous Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M14.83 21.17L5.66 12l9.17-9.17L12 0 0 12l12 12z"></path><path d="M-16-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        <div class="in-the-headlines__button in-the-headlines__button--next">\n            <span class="sr-only">Next Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M0 21.17L9.17 12 0 2.83 2.83 0l12 12-12 12z"></path><path d="M-17.17-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="in-the-headlines__pagination"></div>\n        \n      </div>\n    ';
+      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="in-the-headlines__button in-the-headlines__button--prev">\n            <span class="visually-hidden">Previous Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M14.83 21.17L5.66 12l9.17-9.17L12 0 0 12l12 12z"></path><path d="M-16-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        <div class="in-the-headlines__button in-the-headlines__button--next">\n            <span class="visually-hidden">Next Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M0 21.17L9.17 12 0 2.83 2.83 0l12 12-12 12z"></path><path d="M-17.17-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="in-the-headlines__pagination"></div>\n        \n      </div>\n    ';
     }
   }, {
     key: 'slideHtml',
@@ -595,11 +595,12 @@ var initSwiper = function initSwiper(instance) {
 };
 
 var renderInstance = function renderInstance(instance) {
-  console.log(instance);
+  // console.log(instance);
   var url = instance.getAttribute('data-url');
   // console.log(url);
   fetchJsonp(url, {
-    jsonpCallback: '_jsonp'
+    jsonpCallback: '_jsonp',
+    timeout: 10000
   }).then(function (response) {
     return response.json();
   }).then(function (json) {
@@ -679,7 +680,7 @@ var MuNewsFeed = function () {
   }, {
     key: 'usefulData',
     value: function usefulData(json) {
-      console.log(json, 'json in usefulData');
+      // console.log(json, 'json in usefulData');
       return json.map(function (datum) {
         var imageAlt = objectGet(datum, '_embedded.wp:featuredmedia[0].alt_text');
         if (0 === imageAlt.length) {
