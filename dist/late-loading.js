@@ -562,9 +562,11 @@ var initSwiper = function initSwiper(instance) {
   var container = instance.querySelectorAll('.swiper-container');
 
   var options = {};
+  options.centeredSlides = false;
   // Matt likes it when it loops
   options.loop = true;
   options.slidesPerView = 4;
+  options.slidesPerGroup = 4;
   options.spaceBetween = 40;
 
   // Pagination 'pips'
@@ -580,15 +582,21 @@ var initSwiper = function initSwiper(instance) {
   options.breakpoints = {};
   // When window width is <= 1440px
   options.breakpoints[1440] = {};
+  options.breakpoints[1440].centeredSlides = false;
   options.breakpoints[1440].slidesPerView = 3;
+  options.breakpoints[1440].slidesPerGroup = 3;
   options.breakpoints[1440].spaceBetween = 30;
   // When window width is <= 1024px
   options.breakpoints[1024] = {};
+  options.breakpoints[1024].centeredSlides = false;
   options.breakpoints[1024].slidesPerView = 2;
+  options.breakpoints[1024].slidesPerGroup = 2;
   options.breakpoints[1024].spaceBetween = 20;
   // When window width is <= 768px
   options.breakpoints[768] = {};
+  options.breakpoints[768].centeredSlides = true;
   options.breakpoints[768].slidesPerView = 1;
+  options.breakpoints[768].slidesPerGroup = 1;
   options.breakpoints[768].spaceBetween = 10;
 
   var mySwiper = new Swiper(container, options);
