@@ -3,7 +3,9 @@
   margin: 0 -($grid-gutter-width / 2);
 
   @include e(image) {
+    display: block;
     height: auto;
+    margin: 0 auto;
     max-width: 100%;
   }
 
