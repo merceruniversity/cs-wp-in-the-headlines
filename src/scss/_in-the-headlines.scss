@@ -33,6 +33,12 @@
     }
   }
 
+  @include e(controls){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   //.swiper-pagination {
   //  bottom: 0px;
   //}
