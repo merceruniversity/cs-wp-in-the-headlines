@@ -1,50 +1,99 @@
-.NewsArticleInTheHeadlines {
+@import '../node_modules/sass-bem/bem';
 
-}
+@import 'colors';
+@import 'bootstrap-exerpts';
 
-.swiper-container {
-  width: 100%;
-  height: 100%;
-}
+@include b(in-the-headlines) {
 
-//From screen.css
-.swiper-container {
-  height: 100%;
-  padding: 0 0 20px 0;
-  width: 100%;
-}
-.swiper-pagination {
-  bottom: 0px;
-}
-.swiper-pagination-bullet {
-  background-color: #aaa;
-  opacity: 1.0;
-}
-.swiper-pagination-bullet-active {
-  background-color: #c95106;
-}
- .swiper-button-prev,
- .swiper-button-next {
-  background-image: none;
-}
- .swiper-button-prev,
- .swiper-button-next {
-  border-top: 1px solid #000;
-  border-left: 1px solid #000;
-  bottom: 4px;
-  height: 12px;
-  margin: 0px;
-  width: 12px;
-  top: auto;
-}
- .swiper-button-prev {
-  transform: rotate(-0.125turn);
-}
- .swiper-button-next {
-  transform: rotate(0.375turn);
-}
- .swiper-button-disabled {
-  border-top: 1px solid #aaa;
-  border-left: 1px solid #aaa;
-  opacity: 1.0;
+  margin: 0 -($grid-gutter-width / 2);
+
+  @include e(image) {
+    height: auto;
+    max-width: 100%;
+  }
+
+  @include e(button-prev) {
+
+  }
+
+  @include e(button-next) {
+
+  }
+
+  @include e(headline) {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  @include e(link) {
+    @include m(headline) {
+      &:active,
+      &:focus,
+      &:hover,
+      &:link,
+      &:visited {
+        color: $orange;
+      }
+    }
+  }
+
+  //.swiper-pagination {
+  //  bottom: 0px;
+  //}
+  //.swiper-pagination-bullet {
+  //  background-color: #aaa;
+  //  opacity: 1.0;
+  //}
+  //.swiper-pagination-bullet-active {
+  //  background-color: #c95106;
+  //}
+  //.swiper-button-prev,
+  //.swiper-button-next {
+  //  background-image: none;
+  //}
+  //.swiper-button-prev,
+  //.swiper-button-next {
+  //  border-top: 1px solid #000;
+  //  border-left: 1px solid #000;
+  //  bottom: 4px;
+  //  height: 12px;
+  //  margin: 0px;
+  //  width: 12px;
+  //  top: auto;
+  //}
+  //.swiper-button-prev {
+  //  transform: rotate(-0.125turn);
+  //}
+  //.swiper-button-next {
+  //  transform: rotate(0.375turn);
+  //}
+  //.swiper-button-disabled {
+  //  border-top: 1px solid #aaa;
+  //  border-left: 1px solid #aaa;
+  //  opacity: 1.0;
+  //}
+
+  // Override Swiper Defaults
+
+  .swiper-pagination-bullet {
+    background-color: #888;
+    height: 10px;
+    margin: 0 0.5rem 0 0;
+    width: 10px;
+    opacity: 1.0;
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: $orange;
+  }
+
+  .swiper-button-disabled svg {
+    fill: #888;
+  }
+
 }

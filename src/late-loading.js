@@ -11,52 +11,37 @@ const fetchJsonp = require('fetch-jsonp');
 
 let initSwiper = function(instance) {
   let container = instance.querySelectorAll('.swiper-container');
-  let options = {
-    // Optional parameters
-    loop: true,
 
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination',
-    },
+  let options = {};
+  // Matt likes it when it loops
+  options.loop = true;
+  options.slidesPerView = 4;
+  options.spaceBetween = 40;
 
-    // Navigation arrows
-    navigation: {
-      nextEl: '.in-the-headlines__next',
-      prevEl: '.in-the-headlines__prev',
-    },
+  // Pagination 'pips'
+  options.pagination = {};
+  options.pagination.el = '.swiper-pagination';
 
-    // And if we need scrollbar
-    //scrollbar: {
-    //  el: '.swiper-scrollbar',
-    //},
+  // Navigation 'Previous' & 'Next' buttons
+  options.navigation = {};
+  options.navigation.nextEl = '.in-the-headlines__button--next';
+  options.navigation.prevEl = '.in-the-headlines__button--prev';
 
-    // Default parameters
-    slidesPerView: 4,
-    spaceBetween: 40,
+  // For a responsive design
+  options.breakpoints = {};
+  // When window width is <= 1440px
+  options.breakpoints[1440] = {};
+  options.breakpoints[1440].slidesPerView = 3;
+  options.breakpoints[1440].spaceBetween = 30;
+  // When window width is <= 1024px
+  options.breakpoints[1024] = {};
+  options.breakpoints[1024].slidesPerView = 2;
+  options.breakpoints[1024].spaceBetween = 20;
+  // When window width is <= 768px
+  options.breakpoints[768] = {};
+  options.breakpoints[768].slidesPerView = 1;
+  options.breakpoints[768].spaceBetween = 10;
 
-    // Responsive breakpoints
-    breakpoints: {
-
-      // when window width is <= 1440px
-      1440: {
-        slidesPerView: 3,
-        spaceBetween: 30
-      },
-
-      // when window width is <= 1024px
-      1024: {
-        slidesPerView: 2,
-        spaceBetween: 20
-      },
-
-      // when window width is <= 768px
-      768: {
-        slidesPerView: 1,
-        spaceBetween: 10
-      }
-    }
-  }
   let mySwiper = new Swiper (container, options);
 };
 

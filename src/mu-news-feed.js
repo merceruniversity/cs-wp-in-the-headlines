@@ -42,10 +42,12 @@ export default class MuNewsFeed {
         imageAlt = objectGet(datum, '_embedded.wp:featuredmedia[0].title.rendered');
       }
       let usefulDatum = {};
-      usefulDatum.articleUrl = objectGet(datum, 'link');
-      usefulDatum.headline   = objectGet(datum, 'title.rendered');
-      usefulDatum.imageUrl   = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.source_url');
-      usefulDatum.imageAlt   = imageAlt;
+      usefulDatum.articleUrl  = objectGet(datum, 'link');
+      usefulDatum.headline    = objectGet(datum, 'title.rendered');
+      usefulDatum.imageUrl    = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.source_url');
+      usefulDatum.imageAlt    = imageAlt;
+      usefulDatum.imageWidth  = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.width');
+      usefulDatum.imageHeight = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.height');
       return usefulDatum;
     });
   }

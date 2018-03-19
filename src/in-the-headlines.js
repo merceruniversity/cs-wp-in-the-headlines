@@ -28,19 +28,19 @@ export default class InTheHeadlines {
           <!-- Slides -->
           ${slidesHtml}
         </div>
-        
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
      
         <!-- If we need navigation buttons -->
-        <div class="in-the-headlines__prev">
-            <span class="sr-only">Previous</span>
-            <!-- SVG -->
+        <div class="in-the-headlines__button in-the-headlines__button--prev">
+            <span class="sr-only">Previous Page of Articles</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M14.83 21.17L5.66 12l9.17-9.17L12 0 0 12l12 12z"></path><path d="M-16-12h48v48h-48z" fill="none"></path></svg>
         </div>
-        <div class="in-the-headlines__next">
-            <span class="sr-only">Next</span>
-            <!-- SVG -->
+        <div class="in-the-headlines__button in-the-headlines__button--next">
+            <span class="sr-only">Next Page of Articles</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M0 21.17L9.17 12 0 2.83 2.83 0l12 12-12 12z"></path><path d="M-17.17-12h48v48h-48z" fill="none"></path></svg>
         </div>
+        
+        <!-- If we need pagination -->
+        <div class="in-the-headlines__pagination"></div>
         
       </div>
     `;
@@ -50,11 +50,15 @@ export default class InTheHeadlines {
     return `
       <div class="swiper-slide">
         <div class="in-the-headlines__slide">
-          <a class="in-the-headlines__image-link" href="${slideData.articleUrl}">
-            <img class="in-the-headlines__image" alt="${slideData.imageAlt}" src="${slideData.imageUrl}">
+          <a class="in-the-headlines__link in-the-headlines__link--image" href="${slideData.articleUrl}">
+            <img class="in-the-headlines__image"
+                    alt="${slideData.imageAlt}"
+                    src="${slideData.imageUrl}"
+                    width="${slideData.imageWidth}"
+                    height="${slideData.imageHeight}">
           </a>
           <h3 class="in-the-headlines__headline">
-            <a class="in-the-headlines__headline-link" href="${slideData.articleUrl}">${slideData.headline}</a>
+            <a class="in-the-headlines__link in-the-headlines__link--headline" href="${slideData.articleUrl}">${slideData.headline}</a>
           </h3>
         </div>
       </div>
