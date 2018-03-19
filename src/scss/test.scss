@@ -6,4 +6,16 @@
   @include e(row) {
     background-color: $light-tan;
   }
+
+  @include e(title) {
+    @include before() {
+      content: ' ';
+      position: absolute;
+      left: -3333px;
+      width: 9999px;
+      margin-top: 1em;
+      height: 1px;
+      border-bottom: 1px solid $orange;
+    }
+  }
 }
