@@ -525,12 +525,12 @@ var InTheHeadlines = function () {
       });
       slidesHtml = slidesHtml.join('');
 
-      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n     \n        <!-- If we need navigation buttons -->\n        <div class="in-the-headlines__button in-the-headlines__button--prev">\n            <span class="visually-hidden">Previous Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M14.83 21.17L5.66 12l9.17-9.17L12 0 0 12l12 12z"></path><path d="M-16-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        <div class="in-the-headlines__button in-the-headlines__button--next">\n            <span class="visually-hidden">Next Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M0 21.17L9.17 12 0 2.83 2.83 0l12 12-12 12z"></path><path d="M-17.17-12h48v48h-48z" fill="none"></path></svg>\n        </div>\n        \n        <!-- If we need pagination -->\n        <div class="in-the-headlines__pagination"></div>\n        \n      </div>\n    ';
+      return '\n      <!-- Slider main container -->\n      <div class="swiper-container">\n      \n        <!-- Additional required wrapper -->\n        <div class="swiper-wrapper">\n          <!-- Slides -->\n          ' + slidesHtml + '\n        </div>\n     \n        <div class="in-the-headlines__controls">\n          <div class="in-the-headlines__button in-the-headlines__button--prev">\n            <span class="visually-hidden">Previous Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M14.83 21.17L5.66 12l9.17-9.17L12 0 0 12l12 12z"></path><path d="M-16-12h48v48h-48z" fill="none"></path></svg>\n          </div>\n          <div class="in-the-headlines__pagination"></div>\n          <div class="in-the-headlines__button in-the-headlines__button--next">\n            <span class="visually-hidden">Next Page of Articles</span>\n            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M0 21.17L9.17 12 0 2.83 2.83 0l12 12-12 12z"></path><path d="M-17.17-12h48v48h-48z" fill="none"></path></svg>\n          </div>\n        </div>\n        \n      </div>\n    ';
     }
   }, {
     key: 'slideHtml',
     value: function slideHtml(slideData) {
-      return '\n      <div class="swiper-slide">\n        <div class="in-the-headlines__slide">\n          <a class="in-the-headlines__link in-the-headlines__link--image" href="' + slideData.articleUrl + '">\n            <img class="in-the-headlines__image"\n                    alt="' + slideData.imageAlt + '"\n                    src="' + slideData.imageUrl + '"\n                    width="' + slideData.imageWidth + '"\n                    height="' + slideData.imageHeight + '">\n          </a>\n          <h3 class="in-the-headlines__headline">\n            <a class="in-the-headlines__link in-the-headlines__link--headline" href="' + slideData.articleUrl + '">' + slideData.headline + '</a>\n          </h3>\n        </div>\n      </div>\n    ';
+      return '\n      <div class="swiper-slide">\n        <div class="in-the-headlines__slide">\n          <a class="in-the-headlines__link in-the-headlines__link--image" href="' + slideData.articleUrl + '">\n            <img class="in-the-headlines__image"\n                alt="' + slideData.imageAlt + '"\n                src="' + slideData.imageUrl + '"\n                width="' + slideData.imageWidth + '"\n                height="' + slideData.imageHeight + '">\n          </a>\n          <h3 class="in-the-headlines__headline">\n            <a class="in-the-headlines__link in-the-headlines__link--headline" href="' + slideData.articleUrl + '">' + slideData.headline + '</a>\n          </h3>\n        </div>\n      </div>\n    ';
     }
   }]);
 
@@ -569,7 +569,7 @@ var initSwiper = function initSwiper(instance) {
 
   // Pagination 'pips'
   options.pagination = {};
-  options.pagination.el = '.swiper-pagination';
+  options.pagination.el = '.in-the-headlines__pagination';
 
   // Navigation 'Previous' & 'Next' buttons
   options.navigation = {};

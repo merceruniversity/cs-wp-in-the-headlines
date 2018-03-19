@@ -5,9 +5,18 @@
 @include b(test) {
   @include e(row) {
     background-color: $light-tan;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
   }
 
   @include e(title) {
+    font-family: Roboto, sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 28px;
+    margin-bottom: 20px;
+
     @include before() {
       content: ' ';
       position: absolute;
@@ -17,5 +26,10 @@
       height: 1px;
       border-bottom: 1px solid $orange;
     }
+  }
+
+  @include e(title-text) {
+    background-color: $light-tan;
+    padding: 0 10px;
   }
 }

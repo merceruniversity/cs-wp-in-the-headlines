@@ -20,7 +20,7 @@ let initSwiper = function(instance) {
 
   // Pagination 'pips'
   options.pagination = {};
-  options.pagination.el = '.swiper-pagination';
+  options.pagination.el = '.in-the-headlines__pagination';
 
   // Navigation 'Previous' & 'Next' buttons
   options.navigation = {};
