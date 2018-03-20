@@ -11,7 +11,9 @@
 .in-the-headlines {
   margin: -15px; }
   .in-the-headlines__image {
+    display: block;
     height: auto;
+    margin: 0 auto;
     max-width: 100%; }
   .in-the-headlines__headline {
     font-size: 20px;
