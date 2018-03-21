@@ -17,6 +17,7 @@
     "postbuild:bootstrap:mkdirp": "mkdirp test/resources/bootstrap/",
     "postbuild:bootstrap:ncp": "ncp node_modules/bootstrap/dist/ test/resources/bootstrap/",
     "postbuild:bootstrap": "run-s postbuild:bootstrap:*",
+    "postbuild:cfml": "cpy src/cfml/render-handler.cfm dist/",
     "postbuild:in-the-news:mkdirp": "mkdirp test/resources/in-the-news/",
     "postbuild:in-the-news:ncp": "ncp dist/ test/resources/in-the-news/",
     "postbuild:in-the-news": "run-s postbuild:in-the-news:*",

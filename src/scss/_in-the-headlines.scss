@@ -1,6 +1,6 @@
 @include b(in-the-headlines) {
 
-  margin: 0 -($grid-gutter-width / 2);
+  //margin: 0 -($grid-gutter-width / 2);
 
   @include e(image) {
     display: block;
@@ -19,7 +19,7 @@
 
   @include e(headline) {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 24px;
   }
 
@@ -47,7 +47,13 @@
   }
 
   @include e(more-news){
-
+    &:active,
+    &:focus,
+    &:hover,
+    &:link,
+    &:visited {
+      color: $dark-orange;
+    }
   }
 
   // Override Swiper Defaults
