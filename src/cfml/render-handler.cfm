@@ -6,5 +6,25 @@
  */
 
 Server.CommonSpot.udf.resources.loadResources('swiper');
+Server.CommonSpot.udf.resources.loadResources('news-mercer-edu-feed');
+
+if (0 eq ArrayLen(attributes.elementInfo.elementData.propertyValues)) {
+  exit;
+}
+
+values = attributes.elementInfo.elementData.propertyValues[1].values;
+
+feedURL = values.feed_url;
+moreNewsLinkText = values.more_news_link_text;
+moreNewsLinkURL = values.more_news_link_url;
 
 </cfscript>
+
+<cfoutput>
+  <div
+    class="in-the-headlines"
+    data-url="#feedURL#"></div>
+  <div class="in-the-headlines__more-news-wrapper">
+    <a class="in-the-headlines__more-news" href="#moreNewsLinkURL#">#moreNewsLinkText#</a>
+  </div>
+</cfoutput>
