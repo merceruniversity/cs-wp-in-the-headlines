@@ -60,3 +60,6 @@ typings/
 # WebStorm
 .idea
 
+# NPM run build-generated
+dist
+test/resources/
