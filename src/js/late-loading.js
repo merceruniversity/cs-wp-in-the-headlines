@@ -21,13 +21,11 @@ let initSwiper = function(instance) {
   options.spaceBetween = 40;
 
   // Pagination 'pips'
-  options.pagination = {};
-  options.pagination.el = '.in-the-headlines__pagination';
+  options.pagination = '.in-the-headlines__pagination';
 
   // Navigation 'Previous' & 'Next' buttons
-  options.navigation = {};
-  options.navigation.nextEl = '.in-the-headlines__button--next';
-  options.navigation.prevEl = '.in-the-headlines__button--prev';
+  options.nextButton = '.in-the-headlines__button--next';
+  options.prevButton = '.in-the-headlines__button--prev';
 
   // For a responsive design
   options.breakpoints = {};
