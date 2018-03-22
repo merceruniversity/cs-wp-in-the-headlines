@@ -7,11 +7,5 @@
 @import 'colors';
 @import 'bootstrap-exerpts';
 @import 'in-the-headlines';
-
-// https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
-.visually-hidden {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px; width: 1px;
-  overflow: hidden;
-  position: absolute !important;
-}
+@import 'utilities';
+@import 'hacks';

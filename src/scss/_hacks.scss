@@ -1,0 +1,6 @@
+// screen.css uses tag selectors to make h3 tags bold
+@include b(in-the-headlines) {
+  h3 {
+    font-weight: 300;
+  }
+}

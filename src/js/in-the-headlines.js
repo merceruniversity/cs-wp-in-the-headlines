@@ -31,12 +31,12 @@ export default class InTheHeadlines {
      
         <div class="in-the-headlines__controls">
           <div class="in-the-headlines__button in-the-headlines__button--prev">
-            <span class="visually-hidden">Previous Page of Articles</span>
+            <span class="u-visually-hidden">Previous Page of Articles</span>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M14.83 21.17L5.66 12l9.17-9.17L12 0 0 12l12 12z"></path><path d="M-16-12h48v48h-48z" fill="none"></path></svg>
           </div>
           <div class="in-the-headlines__pagination"></div>
           <div class="in-the-headlines__button in-the-headlines__button--next">
-            <span class="visually-hidden">Next Page of Articles</span>
+            <span class="u-visually-hidden">Next Page of Articles</span>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 14.83 24" width="14.83"><path d="M0 21.17L9.17 12 0 2.83 2.83 0l12 12-12 12z"></path><path d="M-17.17-12h48v48h-48z" fill="none"></path></svg>
           </div>
         </div>
