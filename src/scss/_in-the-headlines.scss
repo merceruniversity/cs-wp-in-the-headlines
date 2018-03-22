@@ -1,6 +1,12 @@
-@include b(in-the-headlines) {
+/**
+ * BEM classes for the main parts of the element
+ *
+ * @author Todd Sayre
+ */
 
-  //margin: 0 -($grid-gutter-width / 2);
+@import 'colors';
+
+@include b(in-the-headlines) {
 
   @include e(image) {
     display: block;

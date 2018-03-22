@@ -1,3 +1,10 @@
+/**
+ * Classes that are not tied to element
+ * These could be overwritten later, so be careful
+ *
+ * @author Todd Sayre
+ */
+
 // https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
 @include u(visually-hidden) {
   clip: rect(1px, 1px, 1px, 1px);

@@ -1,6 +1,20 @@
-// screen.css uses tag selectors to make h3 tags bold
-@include b(in-the-headlines) {
-  h3 {
-    font-weight: 400;
+/*
+ * A shameful collection of styles
+ *
+ * @author Herb
+ */
+
+@import 'bootstrap-exerpts';
+
+.full-width-row {
+
+  @include b(in-the-headlines) {
+    // For how the template uses Bootstrap grids
+    margin: 0 -($grid-gutter-width / 2);
+
+    // screen.css uses tag selectors to make h3 tags bold
+    h3 {
+      font-weight: 400;
+    }
   }
 }
