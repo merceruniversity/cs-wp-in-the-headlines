@@ -14,7 +14,9 @@ let initSwiper = function(instance) {
 
   let options = {};
   // Matt likes it when it loops
+  options.grabCursor = true;
   options.loop = true;
+  options.paginationClickable = true;
   options.slidesPerView = 4;
   options.slidesPerGroup = 4;
   options.spaceBetween = 40;
@@ -26,23 +28,23 @@ let initSwiper = function(instance) {
   options.nextButton = '.in-the-headlines__button--next';
   options.prevButton = '.in-the-headlines__button--prev';
 
-  // For a responsive design
+  // Breakpoints synchronized with Bootstrap
   options.breakpoints = {};
-  // When window width is <= 1440px
-  options.breakpoints[1440] = {};
-  options.breakpoints[1440].slidesPerView = 3;
-  options.breakpoints[1440].slidesPerGroup = 3;
-  options.breakpoints[1440].spaceBetween = 30;
-  // When window width is <= 1024px
-  options.breakpoints[1024] = {};
-  options.breakpoints[1024].slidesPerView = 2;
-  options.breakpoints[1024].slidesPerGroup = 2;
-  options.breakpoints[1024].spaceBetween = 20;
-  // When window width is <= 768px
-  options.breakpoints[768] = {};
-  options.breakpoints[768].slidesPerView = 2;
-  options.breakpoints[768].slidesPerGroup = 2;
-  options.breakpoints[768].spaceBetween = 10;
+  // When window width is < 1200
+  options.breakpoints[1199] = {};
+  options.breakpoints[1199].slidesPerView = 3;
+  options.breakpoints[1199].slidesPerGroup = 3;
+  options.breakpoints[1199].spaceBetween = 30;
+  // When window width is < 992px
+  options.breakpoints[991] = {};
+  options.breakpoints[991].slidesPerView = 2;
+  options.breakpoints[991].slidesPerGroup = 2;
+  options.breakpoints[991].spaceBetween = 20;
+  // When window width is < 768px
+  options.breakpoints[767] = {};
+  options.breakpoints[767].slidesPerView = 2;
+  options.breakpoints[767].slidesPerGroup = 2;
+  options.breakpoints[767].spaceBetween = 10;
 
   let mySwiper = new Swiper (container, options);
 };
