@@ -14,9 +14,9 @@
   properties = attributes.elementInfo.elementData.propertyValues;
 </cfscript>
 
-<cfif 0 < arrayLen(properties)>
+<cfif 0 lt arrayLen(properties)>
   <cfscript>
-    values = properties.values;
+    values = properties[1].values;
 
     feedURL = values.feed_url;
     moreNewsLinkText = values.more_news_link_text;
