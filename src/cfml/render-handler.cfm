@@ -23,6 +23,7 @@
     moreNewsLinkURL = values.more_news_link_url;
   </cfscript>
   <cfoutput>
+    <cfdump var="#cgi#">
     <div
       class="in-the-headlines"
       data-url="#feedURL#"></div>
