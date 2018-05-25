@@ -4,6 +4,8 @@
   * Created: 2018-03-09 13:16
   */
 
+  request.element.isStatic = 0;
+
   Server.CommonSpot.udf.resources.loadResources('swiper');
   Server.CommonSpot.udf.resources.loadResources('news-mercer-edu-feed');
 
@@ -19,11 +21,25 @@
     values = properties[1].values;
 
     feedURL = values.feed_url;
+
+    /* Proxy the feed to reduce WP Engine traffic {{{ */
+    thisFilePath = GetCurrentTemplatePath();
+    thisFileName = getFileFromPath(thisFilePath);
+    thisDirectoryPath = replace(thisFilePath, thisFileName, '');
+    proxyFileName = 'proxy.cfm';
+    proxyPath = '#thisDirectoryPath##proxyFileName#';
+    // Convert from file path to URL path
+    proxyURL = proxyPath;
+    proxyURL = replace(proxyURL, 'E:\commonspot-root\', '');
+    proxyURL = replace(proxyURL, '\', '/', 'all');
+    proxyURL = 'https://devauthor.mercer.edu/#proxyURL#';
+    feedURL = '#proxyURL#?url=#encodeForURL(feedURL)#';
+    /* }}} */
+
     moreNewsLinkText = values.more_news_link_text;
     moreNewsLinkURL = values.more_news_link_url;
   </cfscript>
   <cfoutput>
-    <cfdump var="#cgi#">
     <div
       class="in-the-headlines"
       data-url="#feedURL#"></div>
