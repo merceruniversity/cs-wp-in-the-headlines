@@ -17,7 +17,9 @@
     "postbuild:bootstrap:mkdirp": "mkdirp test/resources/bootstrap/",
     "postbuild:bootstrap:ncp": "ncp node_modules/bootstrap/dist/ test/resources/bootstrap/",
     "postbuild:bootstrap": "run-s postbuild:bootstrap:*",
-    "postbuild:cfml": "cpy src/cfml/*.cfm dist/",
+    "postbuild:cfml:copy": "cpy src/cfml/*.cfm dist/",
+    "postbuild:cfml:touch": "nodetouch dist/*.cfm",
+    "postbuild:cfml": "run-s postbuild:cfml:*",
     "postbuild:in-the-news:min:css": "cssnano dist/early-loading.css dist/early-loading.min.css",
     "postbuild:in-the-news:min:js": "babili dist/late-loading.js -o dist/late-loading.min.js",
     "postbuild:in-the-news:min": "run-p postbuild:in-the-news:min:*",
@@ -74,6 +76,7 @@
     "prettier": "^1.12.1",
     "rimraf": "^2.6.2",
     "sass-bem": "^2.6.5",
-    "swiper": "^3.4.2"
+    "swiper": "^3.4.2",
+    "touch": "^3.1.0"
   }
 }
