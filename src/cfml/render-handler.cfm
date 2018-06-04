@@ -4,7 +4,7 @@
   * Created: 2018-03-09 13:16
   */
 
-  request.element.isStatic = 0;
+  // request.element.isStatic = 0;
 
   Server.CommonSpot.udf.resources.loadResources('swiper');
   Server.CommonSpot.udf.resources.loadResources('news-mercer-edu-feed');
