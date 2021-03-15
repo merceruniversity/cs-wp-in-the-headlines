@@ -44,10 +44,10 @@ export default class MuNewsFeed {
       let usefulDatum = {};
       usefulDatum.articleUrl  = objectGet(datum, 'link');
       usefulDatum.headline    = objectGet(datum, 'title.rendered');
-      usefulDatum.imageUrl    = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.source_url');
+      usefulDatum.imageUrl    = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.td_741x486.source_url');
       usefulDatum.imageAlt    = imageAlt;
-      usefulDatum.imageWidth  = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.width');
-      usefulDatum.imageHeight = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420.height');
+      usefulDatum.imageWidth  = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.td_741x486.width');
+      usefulDatum.imageHeight = objectGet(datum, '_embedded.wp:featuredmedia[0].media_details.sizes.td_741x486.height');
       return usefulDatum;
     });
   }
@@ -59,7 +59,7 @@ export default class MuNewsFeed {
    */
   filterNoImageArticles (json) {
     return json.filter((post) => {
-      return objectHas(post, '_embedded.wp:featuredmedia[0].media_details.sizes.bk620_420');
+      return objectHas(post, '_embedded.wp:featuredmedia[0].media_details.sizes.td_741x486');
     });
   }
 }
